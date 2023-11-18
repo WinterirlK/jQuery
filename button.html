@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Prosty projekt w jquery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <h1>Witaj, Jquery!</h1>
+    <button id="ZmienTekstBtn">Zmień tekst</button>
+    <div id="wynik">
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#ZmienTekstBtn').click(function () {
+                $("#wynik").text("Tekst został zmieniony na jQuery");
+            })
+        })
+    </script>
+</body>
+
+</html>

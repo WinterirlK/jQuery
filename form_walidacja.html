@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <style>
+        *{
+            background-color: #333;
+            color: white;
+        }
+        .error{
+            color: red;
+        }
+        form{
+            padding: 2%;
+            margin: 2%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border: 2px dotted yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <span>Imie: </span><input type="text" id="imie"><br>
+        <span>Nazwisko: </span><input type="text" id="naz" ><br>
+        <span>Hasło: </span><input type="password" name="" id="pas"><br>
+        <span>Email: </span><input type="email" name="" id="email"><br>
+        <select name="" id="sel">
+            <option value="Niemcy">Niemcy</option>
+            <option value="Czechy">Czechy</option>
+            <option value="Słowacja">Słowacja</option>
+            <option value="Ukraina">Ukraina</option>
+            <option value="Białoruś">Białoruś</option>
+            <option value="Litwa">Litwa</option>
+            <option value="Rosja">Rosja</option>
+            <option value="empty"selected></option>
+        </select>
+        <br>
+        <span>akceptuje warunki </span><input type="checkbox" name="" id="wr">
+        <br>
+        <input type="submit">
+        <input type="reset">
+        <br>
+    </form>
+    <script>
+        $(document).ready(function () {
+            $("form").submit(function (e) {
+                let name = $("#imie").val();
+                let surname = $("#naz").val();
+                let password = $("#pas").val();
+                let email = $("#email").val();
+                
+                let password_check = /^(?=.*[A-Z])(?=.*[!@#$%^&*-+])(?=.*[0-9])(?=.{8,})/;
+                let country = $("#sel").val();
+                let condition = $("#wr").is(":checked");
+                $(".error").remove();
+                if(name == ""){
+                    $("#imie").parent().after("<span class = 'error'>Wpisz imie </span>");
+                    e.preventDefault();
+                }
+                if(surname==""){
+                    $("#naz").after("<span class = 'error'>Wpisz nazwisko </span>");
+                    e.preventDefault();
+                }
+                if(!password.match(password_check)){
+                    $("#pas").after("<span class = 'error'>Hasło musi zawierać co najmniej 8 znaków, duża litere znak specjalny lub cyfre");
+                    e.preventDefault();
+                    
+
+                }
+                if(!condition){
+                    $("#wr").after("<span class = 'error'>zaakceptuj warunki</span>");
+                    e.preventDefault();
+                }
+                if(country="empty"){
+                    $("#sel").after("<span class = 'error'>wybierz kraj</span>");
+                    e.preventDefault();
+                }
+                var pattern = /@zs1.pl/;
+                var exists = pattern.test(email);
+
+                if (exists) {
+                    
+                } else {
+                    $("#email").after("<span class = 'error'>email musi zawierac zs1.pl</span>");
+                    e.preventDefault();
+                }
+                
+               
+            });
+        });
+    </script>
+</body>
+
+</html>

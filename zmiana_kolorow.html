@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="node_modules\jquery\dist\jquery.min.js"></script>
+</head>
+<body>
+    <select name="" id="sel">
+        <option val="red">red</option>
+        <option val="green">green</option>
+        <option val="blue">blue</option>
+        <option val="black">black</option>
+    </select>
+    <script>
+        $(document).ready(function(){
+            $("#sel").change(function(){
+                let select_c = $(this).val();
+                $("body").css("background-color",select_c); 
+            })
+        })
+    </script>
+</body>
+</html>

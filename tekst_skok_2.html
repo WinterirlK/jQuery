@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>tekst co skacze</title>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <button id="btn">skakanie</button>
+    <br>
+    <p style="position: absolute; top: 10%;" id="skok">skacze</p>
+    <script>
+        $(document).ready(function () {
+            $("#btn").click(function () {
+                setInterval(function () {
+                    let a = $("#skok").css("top");
+                    if (a == "10%") {
+                        a = "15%";
+                    } else {
+                        a = "10%";
+                    }
+                    $("#skok").css("top", a);
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

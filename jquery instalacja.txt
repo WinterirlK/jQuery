@@ -1,0 +1,5 @@
+1. wejdz do folderu
+2. npm init -y
+3. npm install jquery
+
+graf połączeń plików
