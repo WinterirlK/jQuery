@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+        #lux{
+           position:absolute;
+           width: 50%;
+           height: 100%;
+           background-color: darkred;
+        }
+        #lux1{
+            position: absolute;
+            left: 50%;
+            top: 0%;
+            height: 100%;
+            width: 50%;
+            background-color: darkred;
+           
+        }
+        #kwr{
+            width: 200px;
+            height: 100px;
+            background-color: fuchsia;
+            border: 5px solid white;
+          
+            
+        }
+       
+        
+        .error{
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="lux">
+        <p>ZADANIA jquery - formularze</p><br>
+        <p>Podaj kolor tła</p>
+        <input type="button" value="cyan" id="C">
+        <input type="button" value="magenta" id="M">
+        <input type="button" value="gold" id="G"><br>
+        <p>podaj kolor czcionki</p>
+        <select name="" id="sel1">
+            <option value="black">black</option>
+            <option value="white">white</option>
+            <option value="blue">blue</option>
+        </select>
+        <p>Podaj rozmiar czcionki w procentach, np.200%</p>
+        <input type="text" id="text" >
+        <p>Czy rysunek ma mieć ramke</p>
+        <input type="checkbox" name="ramka" id="ramka"><span>Rysuj ramke</span>
+        <p>Jaki typ punktora listy</p>
+        <input type="radio" name="z" id="dysk">dysk<br>
+        <input type="radio" name="z" id="kwadrat">kwadrat<br>
+        <input type="radio" name="z" id="okrag">okrąg
+        <div id="kwr" id="kwr1"></div>
+        <ul id="list">
+            <li>element </li>
+            <li>element </li>
+            <li>element </li>
+        </ul>
+    </div>
+    
+        <div id="lux1">
+            <h2>Formularz logowania</h2>
+            <form action="">
+                <span>login: </span><input type="text" id="login" ><br>
+                <span>Hasło: </span><input type="password" name="" id="pas"><br>
+                <span>Email: </span><input type="email" name="" id="email"><br>
+                <select name="" id="sel3">
+                    <option value="Niemcy">Niemcy</option>
+                    <option value="Czechy">Polska</option>
+                   
+                </select>
+            <br>
+            <span>akceptuje regulamin </span><input type="checkbox" name="" id="wr">
+            <br>
+            <input type="submit" value="Zaloguj">
+            <input type="reset">
+            <br>
+        </form>
+        </div>
+       
+    <script>
+        $(document).ready(function () {
+            $("#C").click(function () {
+                let color = $(this).val();
+                $("#lux1").css("background-color", color);
+                });
+            $("#M").click(function () {
+                let color = $(this).val();
+                $("#lux1").css("background-color", color);
+                });
+            $("#G").click(function () {
+                let color = $(this).val();
+                $("#lux1").css("background-color", color);
+                });
+                $("#sel1").change(function(){
+                let temp = $(this).val();
+                $("#lux1").css("color", temp);
+                });
+
+                
+                $("#ramka").click(function (e) {
+                let xx = $("#ramka").is(":checked");
+                if (!xx) {
+                    $("#kwr").css("border", "0px");
+                } else {
+                    $("#kwr").css("border", "5px solid"); 
+                }
+    
+            });
+                    
+              
+               
+               
+  
+            });
+            $("form").submit(function (e) {
+                var wartoscPola = $("#text").val();
+                $("#lux1").css("font-size", wartoscPola);
+                let email = $("#email").val();
+                let login = $("#login").val();
+                let password = $("#pas").val();
+                let password_check = /^(?=.*[A-Z])(?=.*[!@#$%^&*-+])(?=.*[0-9])(?=.{8,})/;
+                let country = $("#sel3").val();
+                let condition = $("#wr").is(":checked");
+                
+                $(".error").remove();
+               
+                if(login == ""){
+                    $("#login").after("<span class = 'error'>Wpisz imie </span>");
+                    e.preventDefault();
+                }
+                
+                if(!password.match(password_check)){
+                    $("#pas").after("<span class = 'error'>Hasło musi zawierać co najmniej 8 znaków, duża litere znak specjalny lub cyfre");
+                    e.preventDefault();
+                }
+                if(!condition){
+                    $("#wr").after("<span class = 'error'>zaakceptuj warunki</span>");
+                    e.preventDefault();
+                }
+                if(country="empty"){
+                    $("#sel").after("<span class = 'error'>wybierz kraj</span>");
+                    e.preventDefault();
+                }
+                var pattern = /@z3Felo.pl/;
+                var exists = pattern.test(email);
+
+                if (exists) {
+                    
+                } else {
+                    $("#email").after("<span class = 'error'>email musi zawierac zs1.pl</span>");
+                    e.preventDefault();
+                }
+                
+               
+            });
+        
+    </script>
+</body>
+
+</html>
